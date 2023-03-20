@@ -3,12 +3,11 @@ from glob import glob
 import os
 
 def get_title(filename):
-    max_font_size = 0 # 初始化最大字体大小为0
-    max_string = "" # 初始化最大字体大小对应的字符串为空
+    max_font_size = 0 
+    max_string = "" 
     with fitz.open(filename) as f:
         page0_text = f[0].get_text("dict")
         blocks = page0_text["blocks"]
-        # 寻找最大字体
         for block in blocks:
             if block["type"] == 0 and len(block['lines']):
                 if len(block["lines"][0]["spans"]) and "arXiv" not in block["lines"][0]["spans"][0]["text"]:
